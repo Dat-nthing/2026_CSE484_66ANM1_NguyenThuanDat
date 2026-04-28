@@ -1,0 +1,737 @@
+﻿TRƯỜNG ĐẠI HỌC THỦY LỢI
+KHOA CÔNG NGHỆ THÔNG TIN
+BỘ MÔN HỆ THỐNG THÔNG TIN
+
+
+  
+
+
+
+BÀI TẬP LỚN
+CƠ SỞ DỮ LIỆU
+
+
+ĐỀ TÀI:
+CƠ SỞ DỮ LIỆU QUẢN LÍ CỬA HÀNG MĨ PHẨM
+
+
+
+
+                                         Giảng viên: TS. Lương Thị Hồng Lan
+                                                   Sinh viên thực hiện : 
+
+________________
+
+
+                                                                    Hà Nội,4/2021
+TRƯỜNG ĐẠI HỌC THỦY LỢI
+KHOA CÔNG NGHỆ THÔNG TIN
+BỘ MÔN HỆ THỐNG THÔNG TIN
+  
+
+BÀI TẬP LỚN
+CƠ SỞ DỮ LIỆU
+
+
+ĐỀ TÀI:
+CƠ SỞ DỮ LIỆU QUẢN LÍ CỬA HÀNG MĨ PHẨM
+
+
+
+
+                                               Giảng viên: TS. Lương Thị Hồng Lan
+                                                   Sinh viên thực hiện : 
+________________
+
+
+
+
+HÀ NỘI, 4/2021
+LỜI NÓI ĐẦU
+Hiện nay với sự phát triển nhanh chóng của công nghệ thông tin ngày càng hiện đại, giúp cho việc mua sắm của con người ngày càng dễ dàng, nhu cầu quản lí bán hàng ngày càng tăng cao. Việc quản lí bán hàng không hề đơn giản, rất dễ nhầm lẫn cũng chính vì thế mà đã ra đời hệ thống quản lí bán hàng xây dựng trên cơ sở dữ liệu.
+Trước kia khi công nghệ chưa được ứng dụng rộng rãi, các cửa hàng được quản lí một cách thủ công nên mất rất nhiều thời gian, nhân lực cũng như tài chính và cũng dễ xảy ra sai xót. Hiện nay, cùng với sự phát triển của CNTT máy tính đã được sử dụng rộng rãi ở mọi nơi giúp cho hiệu quả công việc được tốt hơn. Ứng dụng công nghệ vào công việc quản lí là yêu cầu cấp thiết được cải tiến ngày nay. Nhận thấy điều này, em đã xây dựng một cơ sở dữ liệu quản lí bán hàng và cụ thể là “Quản lí cửa hàng mĩ phẩm” với mong muốn có thể giúp cho việc xây dựng hệ thống quản lí một cách dễ dàng hơn. Để từ đó có thể đưa ra những kinh nghiệm ứng dụng vào thực tế.  
+       Là một sinh viên công nghệ thông tin, nhận thấy tầm quan trọng của tin học và các ứng dụng của tin học trong cuộc sống hiện đại, sau một thời gian tìm hiểu vào học tập, em đã chọn đề tài “Quản lí cửa hàng mĩ phẩm” nhằm ứng dụng kiến thức đã học được và kết hợp chúng với kiến thức thực tế.
+      Em xin chân thành cảm ơn cô giáo TS. Lương Thị Hồng Lan giảng viên đã tận tình hướng dẫn, giảng dạy em bộ môn Cơ Sở Dữ Liệu để hoàn thành được bài tập này.
+
+
+________________
+
+
+MỤC LỤC
+LỜI NÓI ĐẦU                                                                                2
+MỤC  LỤC                                                                                3                                                                                                                          
+I.Xác định quy tắc/ràng buộc, xây dựng mô hình thực thể liên kết ER                4
+1.1 Liệt kê,  chính xác hóa và lựa chọn thông tin.                                        4
+1.2 Các thực thể, thuộc tính:                                                                4
+1.3 Các quy tắc/ ràng buộc                                                                4
+1.4 Vẽ mô hình thực thể liên kết chuẩn hóa và thu gọn sơ đồ ER:                5
+II .  Chuyển từ mô hình ER sang mô hình quan hệ                                7
+III. Xác định khóa                                                                        10
+3.1 Xác định phụ thuộc hàm                                                                10
+3.2 Tìm khóa cho các quan hệ                                                                11
+lV. Chuẩn hóa lược đồ quan hệ thành dạng 3NF hoặc BCNF                         12
+V. Câu lệnh truy vấn dữ liệu SQL                                                        15  
+5.1 Tạo bảng                                                                                15
+5.2 Các câu hỏi truy vấn và ngôn ngữ SQL                                                17
+KẾT LUẬN                                                                                20
+TÀI LIỆU THAM KHẢO                                                                20        
+
+
+
+
+
+
+
+
+
+
+
+
+I.Xác định quy tắc/ràng buộc, xây dựng mô hình thực thể liên kết ER
+   1. Liệt kê, chính xác hóa và lựa chọn thông tin.
+   2. Các thực thể, thuộc tính:
+
+
+a. KHACH( MaKhach, TenKhach, DiaChiKhach, SDTKhach)
+Mỗi khách có mã (MaKhach) duy nhất, tên khách (TenKhach), địa chỉ (DiaChi) và số điện thoại (SDT).
+
+
+b. NHANVIEN( MaNV, TenNV, DiaChiNV, SDTNV, ChucVu)
+Mỗi nhấn viên có mã nhân viên (MaNV) duy nhất, tên nhân viên (TenNV), địa chỉ (DiaChiNV), số điện thoại (SDTNV), chức vụ ở trong cửa hàng (ChucVu).
+
+
+c. LUONG( MaLuong, ThanhToan)
+Mỗi lương có mã lương (MaLuong) duy nhất và thanh toán (ThanhToan).
+
+
+d. HOADON( MaHD, NgayTao, TongTien, TienThua).
+Mỗi hóa đợn có mã hóa đơn (MaHD) duy nhất, ngày tạo hóa đơn (NgayTao), tổng tiền trên hóa đơn (TongTien), tiền thừa (TienThua).
+
+
+e. NHACUNGCAP( MaNCC, TenNCC, DiaChiNCC, SDT, NgayHopTac)
+Mỗi nhà cung cấp có mã nhà cung cấp (MaNCC) duy nhất, tên nhà cung cấp (TenNCC), địa chỉ (DiaChiNCC), số điện thoại (SDTNCC), ngày hợp tác (NgayHopTac).
+
+
+f. LOAIHANG(MaHang, TenHangNhap, SoLuongNhap, NgayNhap, NgayHetHan)
+Mỗi loại hàng có mã hàng (MaHang) duy nhất, tên hàng nhập(TenHangNhap), Số lượng hàng(SoLuongNhap), ngày nhập (NgayNhap) và ngày hết hạn (NgayHetHan).
+
+
+g. MENU( MaMN, TenHangBan, DonGia, SoLuong).
+Mỗi menu có mã menu (MaMN) duy nhất, tên hàng bán(TenHangBan), đơn giá (DonGia), Số lượng bán (SoLuong).
+
+
+h.TONKHO( TenHangTon, SoLuongTon)
+Tồn kho tên hàng tồn (TenHangTon), số lượng tồn (SoLuongTon).
+        
+   3. Các quy tắc/ ràng buộc
+1. Một nhân viên có thể được nhận lương với mức lương khác nhau, và tiền lương thanh toán sẽ được trả theo mã lương của từng nhân viên.
+2. Một cửa hàng có nhiều nhân viên, mỗi nhân viên quản lý và thanh toán cho một hoặc nhiều khách hàng.
+3. Một khách hàng có thể có 1 hoặc nhiều nhân viên phục vụ. 
+4. Một nhân viên thanh toán cho khách hàng bằng 1 hoặc nhiều hóa đơn.
+5. Nhân viên sẽ giao dịch hợp tác với nhà cung cập để nhập hàng cho cửa hàng.
+6. Một nhân viên có thể giao dịch với một hoặc nhiều nhà cung cấp.
+7. Nhà cung cấp có thể cung cấp một hoặc nhiều loại hàng khác nhau.
+8. Mỗi menu có một hoặc nhiều loại hàng.
+9. Một khách hàng có thể lựa chọn một hoặc nhiều menu hàng hóa.
+10. Mỗi menu có thể được sử dụng cho một hoặc nhiều khách hàng.
+11. Mỗi loại hàng có thể không tồn kho hoặc tồn kho nhiều.
+
+
+1.4 Vẽ mô hình thực thể liên kết chuẩn hóa và thu gọn sơ đồ ER:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Hình 1: Mô hình thực thể liên kết ER
+  
+________________
+
+II. Chuyển từ mô hình ER sang mô hình quan hệ
+Trong bài bao gồm các bước:
+Bước 1: Các thực thể (trừ thực thể yếu) 🡪Các bảng các quan hệ.
+
+
+KHACH( MaKhach, TenKhach, DiaChiKhach, SDTKhach)
+NHANVIEN( MaNV, TenNV, DiaChiNV, SDTNV, ChucVu)
+LUONG( MaLuong, ThanhToan)
+HOADON( MaHD, NgayTao, TongTien, TienThua)
+NHACUNGCAP( MaNCC, TenNCC, DiaChiNCC, SDTNCC, NgayHopTac)
+LOAIHANG(MaHang, TenHangNhap, SoLuongNhap, NgayNhap, NgayHetHan)
+MENU( MaMN, TenHangBan, DonGia, SoLuongBan)
+TONKHO(  TenHangTon, SoLuongTon)
+
+
+Bước 2: Thực thể yếu 🡪 Các bảng các quan hệ (Khóa của thực thể chủ sẽ thành khóa ngoại).
+
+
+Bước 3: Liên kết 1: 1 🡪Xác định khóa của quan hệ T_S. Đưa khóa chính của T sang làm khóa ngoại của S. Thuộc tính của T thành thuộc tính của S.
+
+
+LUONG( MaLuong, ThanhToan, MaNV)
+
+
+Bước 4: Liên kết 1: N🡪 Khóa của bảng bên một trở thành khóa ngoại của bảng bên nhiều.
+
+
+KHACH( MaKhach, TenKhach, DiaChiKhach, SDTKhach, MaNV, MaMN)
+HOADON( MaHD, NgayTao, TongTien, MaNV, MaKhach)
+NHACUNGCAP( MaNCC, TenNCC, DiaChiNCC, SDTNCC, MaNV)
+LOAIHANG(MaHang, TenHangNhap, SoLuongNhap, NgayNhap, NgayHetHan, MaNCC)
+MENU( MaMN, MaHangBan, TenHangBan, DonGia, SoLuongBan)
+TONKHO( MaHang, TenHangTon, SoLuongTon)
+
+
+
+
+
+
+Bước 5: Liên kết bậc > 2 🡪 Tạo thêm 1 bảng mới
+
+
+Thanhtoan( MaKhach, MaHD, MaNV)
+
+
+Bước 6: Xử lí quan hệ cha con, tổng quát và chuyên biệt hóa
+Ta được mô hình quan hệ:
+
+
+KHACH( MaKhach, TenKhach, DiaChiKhach, SDTKhach, MaNV, MaMN)
+NHANVIEN( MaNV, TenNV, DiaChiNV, SDTNV, ChucVu)
+LUONG( MaLuong, ThanhToan, MaNV)
+HOADON( MaHD, NgayTao, TongTien, MaNV, MaKhach)
+NHACUNGCAP( MaNCC, TenNCC, DiaChiNCC, SDTNCC, MaNV)
+LOAIHANG(MaHang, TenHangNhap, SoLuongNhap, NgayNhap, NgayHetHan, MaNCC)
+MENU( MaMN, MaHang, TenHangBan, DonGia, SoLuongBan)
+TONKHO( MaHang, TenHangTon, SoLuongTon)
+Thanhtoan( MaKhach, MaHD, MaNV)
+
+
+           ⇨Mô hình quan hệ:
+
+
+
+
+
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+________________
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+Hình 2: Mô hình quan hệ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+III. Xác định khóa
+3.1 Xác định phụ thuộc hàm.
+     • Bảng quan hệ NHANVIEN:
+Q1 = (MaNV, TenNV, DiaChiNV, SDTNV, ChucVu, MaLuong)
+- Đặt MaNV = A, TenNV = B, DiaChiNV = C, SDT = D, ChucVu = E, MaLuong=F;
+⇨ Q1 = (ABCDEF)
+Phụ thuộc hàm:
+F1= {A 🡪 BCD, A🡪E, A🡪F}
+     • Bảng quan hệ LUONG:
+Q2 = (MaLuong, ThanhToan, MaNV)  
+- Đặt MaLuong= A, ThanhToan=B, MaNV = C.
+             ⇨ Q2 = (ABC)
+Phụ thuộc hàm:        
+ F2= {A🡪B, A🡪C}
+      • Bảng quan hệ LOAIHANG:
+Q3 = (MaHang, TenHangNhap, SoLuongNhap, NgayNhan, NgayHetHan, MaNCC)
+-Đặt MaHang= A, TenHang= B, SoLuong=C, NgayNhan=D, NgayHetHan= E, MaNCC= F.
+⇨ Q3 = (ABCDEF)
+Phụ thuộc hàm:
+F3 = {A🡪 BCD, D🡪E, AB🡪 F}
+      • Bảng quan hệ NHACUNGCAP:
+Q4 = (MaNCC, TenNCC, DiaChiNCC, SDTNCC)
+- Đặt MaNCC = A, TenNCC = B, DiaChiNCC = C, SDTNCC = D;
+⇨ Q4 = (ABCD)
+Phụ thuộc hàm:
+F4 = {A🡪BC, AB🡪D}
+       • Bảng quan hệ KHACH:
+Q5 = (MaKhach, TenKhach, DiaChiKhach, SDTKhach, MaNV, MaMN)
+- Đặt MaKhạch = A, TenKhach = B, DiaChi = C, SDT= D, MaNV = E, MaMN = F.
+⇨ Q5 = (ABCDEF)
+Phụ thuộc hàm:
+F5 = {A🡪 BCD, A🡪 EF}
+       • Bảng quan hệ HOADON:
+Q6 = (MaHD, TongTien, Ngaytao,TienThua, MaNV, MaKhach)
+- Đặt: MaHD = A, TongTien = B, Ngaytao = C, TienThua =D, MaNV = E, MaKhach= F
+⇨ Q6 = (ABCDEF)
+Phụ thuộc hàm:
+F6 = {A🡪BCD, EA 🡪 F, AC🡪E}
+       • Bảng quan hệ MENU:
+Q7 = (MaMN, MaHang, TenHangBan, DonGia,SoLuongBan)
+- Đặt: MaMN = A, MaHang = B, TenHangBan = C, DonGia = D, SoLuongBan=E.
+⇨ Q7 = (ABCDE)
+Phụ thuộc hàm:
+F7 = {A🡪 BC, B🡪DE}
+        • Bảng quan hệ TONKHO:
+Q8 = (MaHang, TenHang, SoLuongTon) 
+- Đặt: MaHang = A, TenHang = B, SoLuongTon = C
+             ⇨ Q8 = (ABC)
+Phụ thuộc hàm:
+F8 = {A🡪B, A🡪C}
+   2. Tìm khóa cho các quan hệ
+• Q1 = (ABCDEF)
+Phụ thuộc hàm:
+F1 = {A🡪  BCD, A🡪 E, A🡪 F}
+Ta có giao của các khóa là X = {ABCDEF} – {BCDEF} = {A}
+Bao đóng của A =ABCDEF = Q1 nên A là khóa duy nhất của quan hệ Q1.
+• Q2 = (ABC)
+Phụ thuộc hàm:
+F2 = {A🡪 B, A🡪C}
+Ta có giao của các khóa là X = {ABC} – {BC} = {A}
+Bao đóng của A = ABC = Q2 nên A là khóa duy nhất của quan hệ Q2. 
+           • Q3 = (ABCDEF)
+Phụ thuộc hàm:
+F3 = {A🡪 BCD, D🡪 E, AB 🡪 F}
+Ta có giao của các khóa là X= {ABCDEF} – {BCDEF} = {A}
+Bao đóng của A = ADBCEF = Q3 nên A là khóa duy nhất của quan hệ Q3.
+•  Q4 = (ABCD)
+Phụ thuộc hàm:
+F4 = {A🡪 BC, AB🡪 D}
+Ta có giao của các khóa là X = {ABCD} – {BCD} = {A}
+Bao đóng của A= ABCD= Q4 nên A là khóa duy nhất của quan hệ Q4.
+•  Q5 = (ABCDEF)
+Phụ thuộc hàm:
+F5 = {A🡪 BCD, A🡪 EF}
+Ta có giao của các khóa là X = {ABCDEF} - {BCDEF} = {A}
+Bao đóng của A = ABCDEF = Q5 nên A là khóa duy nhất của quan hệ Q5. 
+•  Q6 = (ABCDEF)
+Phụ thuộc hàm:
+F6 = {A🡪BCD, EA 🡪 F, AC🡪E}
+Ta có giao của các khóa là X = {ABCDEF} – {BCDE} = {A}
+Bao đóng của A = ABCDEF = Q6 nên A là khóa duy nhất của quan hệ Q6.
+           • Q7 = (ABCDE)
+Phụ thuộc hàm:
+F7 = {A🡪 BC, B🡪DE}
+Ta có giao của các khóa là X = {ABCDE} – {BCDE} = {A}
+Bao đóng của A = ABCDE = Q7 nên A là khóa duy nhất của quan hệ Q7.
+• Q8 = (ABC)
+Phụ thuộc hàm:
+F8 = {A🡪 B, A🡪C}
+Ta có giao của các khóa là X = {ABC} – {BC} = {A}
+Bao đóng của A = ABC = Q8 nên A là khóa duy nhất của quan hệ Q8. 
+
+
+lV. Chuẩn hóa lược đồ quan hệ thành dạng 3NF hoặc BCNF
+Chuẩn hóa mô hình về dạng 3NF:
+Mô hình ở dạng 3NF nếu nó ở dạng 1 NF và 2NF. Các thuộc tính không khóa đều phụ thuộc đầy đủ vào các khóa. Không có phụ thuộc hàm bắc cầu vào khóa.
+• Q1 = (ABCDEF)
+Phụ thuộc hàm:
+F1 = {A 🡪 BCD, A🡪 E, A🡪 F}. Khóa là A 
+Q1 không có thuộc tính suy diễn và thuộc tính lặp nên đạt 1NF.
+Các thuộc tính không khóa là BCDEF đều phụ thuộc đầy đủ vào khóa A nên Q1 đạt 2NF. 
+Tất cả các thuộc tính không khóa không phụ thuộc bắc cầu vào khóa nên Q1 đạt 3NF.
+• Q2 = {ABC}
+Phụ thuộc hàm:
+F2 = {A 🡪B, A🡪C}. Khóa là A
+Q2 không có thuộc tính suy diễn và thuộc tính lặp nên đạt 1NF.
+Thuộc không khóa là BC phụ thuộc đầy đủ vào khóa nên Q2 đạt 2NF.
+Các thuộc tính không khóa không phụ thuộc bắc cầu vào khóa nên Q2 đạt 3NF.
+
+
+• Q3 = (ABCDEF)
+Phụ thuộc hàm:
+F3 = {A🡪 BCD, D🡪 E, AB 🡪F}. Khóa là A
+Q3 không có thuộc tính suy diễn và thuộc tính lặp nên đạt 1NF.
+Các thuộc tính không khóa là BCDEF không phụ thuộc đầy đủ vào khóa nên Q2 chưa đạt 2NF.
+Tính được F0 = {A🡪 B, A🡪C, A🡪D, D🡪 E, A🡪F}
+Phân rã thành: 
+Q31 = AB
+Q32 = AC
+Q33 = AD
+Q34 = DE
+Q35 = AF
+Kết quả đạt được:
+Q31 (AB), F31 = {A🡪B}, đạt 3NF
+Q32 (AC), F32 = {A🡪C}, đạt 3NF
+Q33 (AD), F33 = {A🡪D}, đạt 3NF
+Q34 (DE), F34 = {D🡪E}, đạt 3NF
+Q35 (AF), F35 = {A🡪F}, đạt 3NF
+• Q4 = (ABCD)
+Phụ thuộc hàm:
+F4 = {A🡪BC, AB🡪 D}. Khóa là A
+Q4 không có thuộc tính suy diễn và thuộc tính lặp nên đạt 1NF.
+Các thuộc tính không khóa là BCD không phụ thuộc đầy đủ vào khóa nên Q4 chưa đạt 2NF.
+Tính được F0 = {A🡪B, A🡪 C, A🡪D}
+Phân rã thành:
+Q41 = AB
+Q42 = AC
+Q43 = AD
+Kết quả đạt được:
+Q41 (AB), F41 = {A🡪B}, đạt 3NF
+Q42 (AC), F41 = {A🡪C}, đạt 3NF
+Q43 (AB), F43 = {A🡪D}, đạt 3NF
+⇨ Q4 đạt BCNF.
+           • Q5 = (ABCDEF)
+Phụ thuộc hàm:
+F5 = {A🡪 BCD, A🡪 EF}. Khóa là A
+Q5 không có thuộc tính suy diễn và thuộc tính lặp nên đạt 1NF.
+Các thuộc tính không khóa là BCDEF phụ thuộc đầy đủ vào khóa nên Q5 đạt 2NF.
+Các thuộc tính không khóa không phụ thuộc bắc cầu vào khóa nên Q5 đạt 3NF.
+• Q6 = (ABCDEF)
+Phụ thuộc hàm:
+F6 = {A🡪BC, EA 🡪 F, AC🡪E}. Khóa là A
+Q6 không có thuộc tính suy diễn và thuộc tính lặp nên đạt 1NF.
+Các thuộc tính không khóa là BCDEF không phụ thuộc đầy đủ vào khóa nên Q6 chưa đạt 2NF.
+Tính được F0 = {A🡪 B, A🡪C, A🡪D, A🡪E, A🡪F}
+Phân rã thành: 
+Q61 = AB
+Q62 = AC
+Q63 = AD
+Q64 = AE
+Q65=AF
+Kết quả đạt được:
+Q61 (AB), F61 = {A🡪B}, đạt 3NF
+Q62 (AC), F62 = {A🡪C}, đạt 3NF
+Q63 (AD), F63 = {A🡪D}, đạt 3NF
+Q64 (AE), F64 = {A🡪E}, đạt 3NF
+Q65 (AF), F64 = {A🡪F}, đạt 3NF
+
+
+⇨ Q6 đạt BCNF
+            • Q7 = (ABCDE)
+Phụ thuộc hàm:
+F7 = {A🡪 BC, B🡪DE}. Khóa là A
+Q7 không có thuộc tính suy diễn và thuộc tính lặp nên đạt 1NF.
+Các thuộc tính không khóa là BCD không phụ thuộc đầy đủ vào khóa nên Q7 chưa đạt 2NF.
+Tính được F0 = {A🡪 B, A🡪C, B🡪D,B🡪E}
+Phân rã thành: 
+Q71 = AB
+Q72 = AC
+Q73 = BD
+Q74=BE
+Kết quả đạt được:
+Q71 (AB), F71 = {A🡪B}, đạt 3NF
+Q72 (AC), F72 = {A🡪C}, đạt 3NF
+Q73 (BD), F73 = {B🡪D}, đạt 3NF
+Q74 (BE), F73 = {B🡪E}, đạt 3NF
+  • Q8 = (ABC)
+Phụ thuộc hàm:
+F8 = {A🡪 B, A🡪C}.Khóa là A
+Q8 không có thuộc tính suy diễn và thuộc tính lặp nên đạt 1NF.
+Thuộc không khóa là BC phụ thuộc đầy đủ vào khóa nên Q8 đạt 2NF.
+Các thuộc tính không khóa không phụ thuộc bắc cầu vào khóa nên Q8 đạt 3NF.
+V. Câu lệnh truy vấn dữ liệu SQL 
+5.1 Tạo bảng
+Create Database baitaplon
+go
+use baitaplon
+
+
+--Tạo bảng NHANVIEN
+Create table NHANVIEN
+(
+MaNV char (5) not null Primary key,
+TenNV nvarchar (30),
+DiaChiNV nvarchar (50),
+SDTNV int,
+ChucVu nvarchar (30)
+);
+
+
+--Tạo bảng MENU
+Create table MENU
+(
+MaMN char (5) not null Primary key,
+MaHang char (8),
+TenHangBan nvarchar (30),
+DonGia int,
+SoLuongBan int
+);
+
+
+--Tạo bảng KHACH
+Create table KHACH
+(
+MaKhach char (5) not null Primary key,
+TenKhach nvarchar (30),
+DiaChiKhach nvarchar (50),
+SDTKhach int,
+MaNV char (5) not null,
+MaMN char (5) not null,
+foreign key (MaNV) references NHANVIEN (MaNV),
+foreign key (MaMN) references MENU ( MaMN)
+);
+
+
+--Tạo bảng LUONG
+Create table LUONG
+(
+MaLuong char (6) not null Primary key,
+MaNV char (5),
+ThanhToan int,
+foreign Key (MaNV) references NHANVIEN ( MaNV)
+);
+
+
+--Tạo bảng HOADON
+Create table HOADON
+(
+MaHD char (5) not null Primary key,
+Ngaytao date,
+Tongtien int,
+TienThua int,
+MaNV char (5) not null,
+MaKhach char (5) not null,
+foreign key (MaNV) references NHANVIEN (MaNV),
+foreign key (MaKhach) references KHACH (MaKhach)
+);
+
+
+--Tạo bảng NHACUNGCAP
+Create table NHACUNGCAP
+(
+MaNCC char (5) not null Primary key,
+TenNCC nvarchar (30),
+DiaChiNCC nvarchar (30),
+SDTNCC int, 
+NamHopTac date,
+MaNV char (5) not null,
+foreign key (MaNV) references NHANVIEN (MaNV)
+);
+
+
+--Tạo bảng LOAIHANG
+Create table LOAIHANG
+(
+MaHang char (8) not null Primary key,
+TenHangNhap nvarchar (30),
+SoLuongNhap int,
+NgayNhan date,
+NgayHetHan date,
+MaNCC char (5) not null,
+foreign key (MaNCC) references NHACUNGCAP (MaNCC)
+);
+
+
+--Tạo bảng TONKHO
+Create table TONKHO
+(
+MaHang char(8) not Null,
+TenHangTon nvarchar(30),
+SoLuongTon int,
+foreign key (MaHang) references LOAIHANG (MaHang)
+);
+
+
+--Tạo bảng Thanhtoan
+Create table Thanhtoan
+(
+MaKhach char(5) not Null,
+MaNV char(5) not Null,
+MaHD char(5) not Null,
+Primary key( MaKhach, MaNV, MaHD),
+foreign key (MaKhach) references KHACH (MaKhach),
+foreign key (MaNV) references NHANVIEN (MaNV),
+foreign key (MaHD) references HOADON (MaHD)
+);
+
+
+   2. Các câu hỏi truy vấn và ngôn ngữ SQL.
+
+
+1.Thêm dữ liệu vào bảng khách
+
+
+Insert into KHACH (MaKhach, TenKhach, DiaChi, SDT, MaNV, MaMN)
+values (‘12340’, N‘Nguyễn Thị Quỳnh’, N’Thanh Hóa’, ‘0848173092’,’NV1’, ‘M023’),
+(‘12341’, N‘Lê Thị Nhung’, N’Hải Dương’, ‘0391647134’, ’NV2’, ‘M012’),
+(‘12342’, N’Dương Thị Hồng’, N’Ninh Bình’, ‘0236489277’, ’NV3’, ‘M029’),
+(‘12343’, N‘Nguyễn Hà Thu’, N’Hà Nội’, ‘0886362883’, ’NV4’, ‘M009’);
+Select *
+From KHACH
+
+
+2. Đưa ra thông tin khách hàng mua hàng ở cửa hàng ngày 3/4/2021.
+
+
+Select *
+From KHACH, HOADON
+Where( (DAY(Ngaytao)=3) and (MONTH(Ngaytao)=4)and (YEAR(Ngaytao)=2021)) and (KHACH.MaKhach =HOADON.MaKhach);
+
+
+3. Đưa ra danh sách nhân viên có tên là ‘Anh’.
+
+
+Select *
+From NHANVIEN
+Where TenNV like 'Anh%';
+
+
+4. Đưa ra thông tin nhân viên có địa chỉ ở Hà Nội.
+
+
+Select *
+From NHANVIEN
+Where DiaChiNV like 'Hà Nội';
+
+
+5. Cho biết họ tên, địa chỉ của khách hàng đã mua hàng trong ‘3/3/2021’.
+
+
+Select TenKhach, DiaChiKhach
+From KHACH.K, HOADON.HD
+Where HD.MaKhach=KH.MaKhach and HD.Ngay= '3/3/2021' ;
+
+
+
+
+6. Hiện thị thông tin nhân viên làm chức vụ thu ngân.
+
+
+Select MaNV, TenNV
+From NHANVIEN
+Where ChucVu like 'Thu ngan';
+
+
+7. Cho biết nhân viên “NV3” đã nhập loại hàng gì trong ngày 3/4/2021.
+
+
+Select *
+From LOAIHANG
+Where  MaHang in (select MaNCC from NHANVIEN, NHACUNGAP Where NHANVIEN.MaNV=NHACUNGAP.MaNV and NHANVIEN.MaNV= 'NV3' and MaNCC ='NCC2');
+
+
+8. Liệt kê MaHang, TenHang với đơn giá 150000. 
+
+
+Select MaHangBan, TenHangBan
+From MENU
+Where DonGia =150000; 
+
+
+9. Cho biết những loại hàng nào có hạn sử dụng đến 22/5/2021.
+
+
+Select MaHangNhap
+From LOAIHANG
+Where NgayHetHan <=(Select NgayHetHan from LOAIHANG where NgayHetHan ='22/5/2021');
+
+
+10. . Cho biết 2 nhân viên có lương thanh toán cao nhất.
+
+
+Select *
+From NHANVIEN
+Where  (select count(*) from LUONG.L where ThanhToan>L.ThanhToan)=2;
+
+
+11. . Cho biết tên hàng mà nhà cung cấp ' NCC2' cung cấp
+
+
+Select *
+From LOAIHANG.H, NHACUNCAP.NCC
+Where H.MaHang= NCC.MaHang and NCC.MaNCC like 'NCC2';
+         
+12. Liệt kê các nhà cung cấp mà cửa hàng đã hợp tác trong năm 2020.
+
+
+Select *
+From NHACUNGCAP
+Where NamHopTac like '2020';
+
+
+13. Tăng lương thêm 1500000 cho nhân viên có chức vụ là 'Quản lý'.
+  
+Update LUONG
+Set ThanhToan=ThanhToan+1500000
+Where MaNV in (select ChucVu from NHANVIEN Where ChucVu like'Quan Ly'); 
+
+
+14. Sắp xếp nhân viên theo thứ tự giảm dần của tiền lương ThanhToan. Nếu lương bằng nhau thì sắp xếp theo thứ tự giảm dần về MaNV.
+
+
+Select *
+From LUONG
+Order by ThanhToan desc, MaNV asc;
+
+
+15. Đưa ra thông tin các loại hàng của mã menu 'M023'.
+Select  *
+From MENU
+Where MaMN like 'M023';
+
+
+KẾT LUẬN
+Sau khi hoàn thành bài tập lớn này, em đã hiểu được những kiến thức về môn học cơ sở dữ liệu cũng như áp dụng kiến thức đó vào phân tích các bài toán thực tế.
+Bài tập đã giải quyết được các vấn đề:
+1. Xác định được các mối liên kết và ràng buộc dữ liệu. Xây dựng được mô hình thực thể liên kết ER. Sau đó từ mô hình này thực hiện chuyển sang mô hình quan hệ.
+2. Từ mô hình quan hệ ta tìm các phụ thuộc hàm, tìm các khóa. Sau đó chuẩn hóa mô hình về dang chuẩn 3NF hoặc BCNF.
+3.Truy vấn cơ sở dữ liệu bằng ngôn ngữ SQL qua các câu lệnh.
+Từ đó kết luận được:
+Trên đây là những kết quả đầu tiên mà em học tập và làm dựa trên yêu cầu bài tập lớn môn Cơ sở dữ liệu. Từ môn học này kết hợp với các kiến thức của các môn học sau sẽ áp dụng cho công việc tương lai dễ dàng hơn.
+Cơ sở dữ liệu là một hệ thống các thống tin có cấu trúc, được lưu trữ trên các thiết bị nhằm thỏa mãn nhu cầu khai thác thông tin từ thực tiễn đồng thời của nhiều người sử dụng hay nhiều chương trình ứng dụng chạy cùng một lúc với những mục đích khác nhau. Việc sử dụng thông thạo các câu truy vấn SQL giúp cho việc truy vấn dữ liệu theo yêu cầu sẽ rất dễ dàng.
+Trong quá trình làm bài sẽ có những sai xót nhỏ, mong cô xem xét bỏ qua ạ!
+                                           TÀI LIỆU THAM KHẢO
+[1] TS. Đặng Thị Thu Hiền, 2017, Bài giảng, Cơ sở dữ liệu, Bộ môn Hệ thống thông tin, Trường Đại học Thủy Lợi.
+[2] Yêu cầu bài tập lớn giảng viên Lương Thị Hồng Lan
+[3] Một số cách trình bày trên google
